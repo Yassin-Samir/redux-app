@@ -1,20 +1,14 @@
 // @ts-nocheck
 import React from "react";
-import { Link } from "react-router-dom";
 import "./nav.css";
+import { useSelector } from "react-redux";
 export default function Nav() {
+  const { name } = useSelector((state) => state.user);
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About us</Link>
-        </li>
-        <li>Contact us</li>
-        <li>Prices</li>
-      </ul>
+      <p>Yassin</p>
+      <p>{name}</p>
+      <p>Nice</p>
     </nav>
   );
 }

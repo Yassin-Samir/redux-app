@@ -1857,23 +1857,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App(props) {
-  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
-    return state.counter;
-  }),
-      count = _useSelector.count;
+  var handle = function handle(e) {
+    dis((0,_redux_slice__WEBPACK_IMPORTED_MODULE_2__.add)({
+      name: document.querySelector('input[type="text"]').value
+    }));
+  };
 
   var dis = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "root1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: function onClick() {
-      dis((0,_redux_slice__WEBPACK_IMPORTED_MODULE_2__.increment)());
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: function onSubmit(e) {
+      return e.preventDefault();
     }
-  }, "Increment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, count), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: function onClick() {
-      dis((0,_redux_slice__WEBPACK_IMPORTED_MODULE_2__.decrement)());
-    }
-  }, "Decrement"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "text",
+    placeholder: "Enter name",
+    onChange: handle
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "submit",
+    value: "submit"
+  }));
 }
 
 /***/ }),
@@ -1890,18 +1892,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var _nav_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nav.css */ "./src/components/nav/nav.css");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 // @ts-nocheck
 
 
 
 function Nav() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/"
-  }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/about"
-  }, "About us")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Contact us"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Prices")));
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.user;
+  }),
+      name = _useSelector.name;
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Yassin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Nice"));
 }
 
 /***/ }),
@@ -1914,9 +1917,8 @@ function Nav() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "decrement": () => (/* binding */ decrement),
+/* harmony export */   "add": () => (/* binding */ add),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "increment": () => (/* binding */ increment),
 /* harmony export */   "slice": () => (/* binding */ slice)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
@@ -1925,27 +1927,20 @@ __webpack_require__.r(__webpack_exports__);
 var slice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
   name: "counter",
   initialState: {
-    count: 0
+    name: ""
   },
   reducers: {
-    increment: function increment() {
+    add: function add() {
       var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        count: 0
+        name: ""
       };
-      state.count++;
-    },
-    decrement: function decrement() {
-      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        count: 0
-      };
-      state.count--;
+      var action = arguments.length > 1 ? arguments[1] : undefined;
+      state.name = action.payload.name;
     }
   }
 });
 
-var _slice$actions = slice.actions,
-    increment = _slice$actions.increment,
-    decrement = _slice$actions.decrement;
+var add = slice.actions.add;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (slice.reducer);
 
@@ -1972,7 +1967,7 @@ var inhance = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
 var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.configureStore)({
   reducer: {
-    counter: _slice__WEBPACK_IMPORTED_MODULE_0__["default"]
+    user: _slice__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
@@ -1998,7 +1993,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "nav {\r\n  position: absolute;\r\n  width: 90%;\r\n  position: relative;\r\n  left: 50%;\r\n  padding: 15px;\r\n  height: 50px;\r\n  background-color: #bbb;\r\n  transform: translateX(-50%);\r\n  -webkit-transform: translateX(-50%);\r\n  -moz-transform: translateX(-50%);\r\n  -ms-transform: translateX(-50%);\r\n  -o-transform: translateX(-50%);\r\n}\r\nnav ul {\r\n  display: flex;\r\n  width: 50%;\r\n  height: 100%;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  font-size: 0.7rem;\r\n}\r\nnav li {\r\n  list-style: none;\r\n  display: inline;\r\n  /* margin: 0 5px; */\r\n  cursor: pointer;\r\n  position: relative;\r\n}\r\nnav li::after {\r\n  position: absolute;\r\n  content: \"\";\r\n  width: 100%;\r\n  height: 2px;\r\n  background-color: #eee;\r\n  transform: scale(0);\r\n  -webkit-transform: scale(0);\r\n  -moz-transform: scale(0);\r\n  -ms-transform: scale(0);\r\n  -o-transform: scale(0);\r\n  transition: transform 0.5s ease;\r\n  bottom: -2px;\r\n  left: 0;\r\n  -webkit-transition: transform 0.5s ease;\r\n  -moz-transition: transform 0.5s ease;\r\n  -ms-transition: transform 0.5s ease;\r\n  -o-transition: transform 0.5s ease;\r\n}\r\nnav li:hover::after {\r\n  transform: scale(1);\r\n  -webkit-transform: scale(1);\r\n  -moz-transform: scale(1);\r\n  -ms-transform: scale(1);\r\n  -o-transform: scale(1);\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/components/nav/nav.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,UAAU;EACV,kBAAkB;EAClB,SAAS;EACT,aAAa;EACb,YAAY;EACZ,sBAAsB;EACtB,2BAA2B;EAC3B,mCAAmC;EACnC,gCAAgC;EAChC,+BAA+B;EAC/B,8BAA8B;AAChC;AACA;EACE,aAAa;EACb,UAAU;EACV,YAAY;EACZ,8BAA8B;EAC9B,mBAAmB;EACnB,iBAAiB;AACnB;AACA;EACE,gBAAgB;EAChB,eAAe;EACf,mBAAmB;EACnB,eAAe;EACf,kBAAkB;AACpB;AACA;EACE,kBAAkB;EAClB,WAAW;EACX,WAAW;EACX,WAAW;EACX,sBAAsB;EACtB,mBAAmB;EACnB,2BAA2B;EAC3B,wBAAwB;EACxB,uBAAuB;EACvB,sBAAsB;EACtB,+BAA+B;EAC/B,YAAY;EACZ,OAAO;EACP,uCAAuC;EACvC,oCAAoC;EACpC,mCAAmC;EACnC,kCAAkC;AACpC;AACA;EACE,mBAAmB;EACnB,2BAA2B;EAC3B,wBAAwB;EACxB,uBAAuB;EACvB,sBAAsB;AACxB","sourcesContent":["nav {\r\n  position: absolute;\r\n  width: 90%;\r\n  position: relative;\r\n  left: 50%;\r\n  padding: 15px;\r\n  height: 50px;\r\n  background-color: #bbb;\r\n  transform: translateX(-50%);\r\n  -webkit-transform: translateX(-50%);\r\n  -moz-transform: translateX(-50%);\r\n  -ms-transform: translateX(-50%);\r\n  -o-transform: translateX(-50%);\r\n}\r\nnav ul {\r\n  display: flex;\r\n  width: 50%;\r\n  height: 100%;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  font-size: 0.7rem;\r\n}\r\nnav li {\r\n  list-style: none;\r\n  display: inline;\r\n  /* margin: 0 5px; */\r\n  cursor: pointer;\r\n  position: relative;\r\n}\r\nnav li::after {\r\n  position: absolute;\r\n  content: \"\";\r\n  width: 100%;\r\n  height: 2px;\r\n  background-color: #eee;\r\n  transform: scale(0);\r\n  -webkit-transform: scale(0);\r\n  -moz-transform: scale(0);\r\n  -ms-transform: scale(0);\r\n  -o-transform: scale(0);\r\n  transition: transform 0.5s ease;\r\n  bottom: -2px;\r\n  left: 0;\r\n  -webkit-transition: transform 0.5s ease;\r\n  -moz-transition: transform 0.5s ease;\r\n  -ms-transition: transform 0.5s ease;\r\n  -o-transition: transform 0.5s ease;\r\n}\r\nnav li:hover::after {\r\n  transform: scale(1);\r\n  -webkit-transform: scale(1);\r\n  -moz-transform: scale(1);\r\n  -ms-transform: scale(1);\r\n  -o-transform: scale(1);\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "nav {\r\n  display: flex;\r\n  width: 100%;\r\n  height: 50px;\r\n  background-color: red;\r\n  color: white;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  padding: 0 5%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/components/nav/nav.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,WAAW;EACX,YAAY;EACZ,qBAAqB;EACrB,YAAY;EACZ,mBAAmB;EACnB,8BAA8B;EAC9B,aAAa;AACf","sourcesContent":["nav {\r\n  display: flex;\r\n  width: 100%;\r\n  height: 50px;\r\n  background-color: red;\r\n  color: white;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  padding: 0 5%;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2024,7 +2019,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  box-sizing: border-box;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  margin: 0;\r\n}\r\n.root1 {\r\n  position: absolute;\r\n  width: 50%;\r\n  left: 50%;\r\n  top: 50%;\r\n  transform: translate(-50%, -50%);\r\n  display: flex;\r\n  justify-content: space-between;\r\n  -webkit-transform: translate(-50%, -50%);\r\n  -moz-transform: translate(-50%, -50%);\r\n  -ms-transform: translate(-50%, -50%);\r\n  -o-transform: translate(-50%, -50%);\r\n}\r\nbutton {\r\n  outline: 1px solid gray;\r\n  border: none;\r\n}\r\na {\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/css/main.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;EACtB,yCAAyC;EACzC,SAAS;AACX;AACA;EACE,kBAAkB;EAClB,UAAU;EACV,SAAS;EACT,QAAQ;EACR,gCAAgC;EAChC,aAAa;EACb,8BAA8B;EAC9B,wCAAwC;EACxC,qCAAqC;EACrC,oCAAoC;EACpC,mCAAmC;AACrC;AACA;EACE,uBAAuB;EACvB,YAAY;AACd;AACA;EACE,qBAAqB;EACrB,cAAc;AAChB","sourcesContent":["* {\r\n  box-sizing: border-box;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  margin: 0;\r\n}\r\n.root1 {\r\n  position: absolute;\r\n  width: 50%;\r\n  left: 50%;\r\n  top: 50%;\r\n  transform: translate(-50%, -50%);\r\n  display: flex;\r\n  justify-content: space-between;\r\n  -webkit-transform: translate(-50%, -50%);\r\n  -moz-transform: translate(-50%, -50%);\r\n  -ms-transform: translate(-50%, -50%);\r\n  -o-transform: translate(-50%, -50%);\r\n}\r\nbutton {\r\n  outline: 1px solid gray;\r\n  border: none;\r\n}\r\na {\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  box-sizing: border-box;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  margin: 0;\r\n}\r\nform {\r\n  position: absolute;\r\n  width: 50%;\r\n  left: 50%;\r\n  top: 50%;\r\n  flex-wrap: wrap;\r\n  transform: translate(-50%, -50%);\r\n  display: flex;\r\n  justify-content: space-between;\r\n  -webkit-transform: translate(-50%, -50%);\r\n  -moz-transform: translate(-50%, -50%);\r\n  -ms-transform: translate(-50%, -50%);\r\n  -o-transform: translate(-50%, -50%);\r\n}\r\nform input {\r\n  width: 100%;\r\n  margin-top: 5px;\r\n  border: 2px solid #c0c0c0;\r\n  outline: none;\r\n  padding: 0 5px;\r\n}\r\ninput[type=\"submit\"] {\r\n  cursor: pointer;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/css/main.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;EACtB,yCAAyC;EACzC,SAAS;AACX;AACA;EACE,kBAAkB;EAClB,UAAU;EACV,SAAS;EACT,QAAQ;EACR,eAAe;EACf,gCAAgC;EAChC,aAAa;EACb,8BAA8B;EAC9B,wCAAwC;EACxC,qCAAqC;EACrC,oCAAoC;EACpC,mCAAmC;AACrC;AACA;EACE,WAAW;EACX,eAAe;EACf,yBAAyB;EACzB,aAAa;EACb,cAAc;AAChB;AACA;EACE,eAAe;AACjB","sourcesContent":["* {\r\n  box-sizing: border-box;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  margin: 0;\r\n}\r\nform {\r\n  position: absolute;\r\n  width: 50%;\r\n  left: 50%;\r\n  top: 50%;\r\n  flex-wrap: wrap;\r\n  transform: translate(-50%, -50%);\r\n  display: flex;\r\n  justify-content: space-between;\r\n  -webkit-transform: translate(-50%, -50%);\r\n  -moz-transform: translate(-50%, -50%);\r\n  -ms-transform: translate(-50%, -50%);\r\n  -o-transform: translate(-50%, -50%);\r\n}\r\nform input {\r\n  width: 100%;\r\n  margin-top: 5px;\r\n  border: 2px solid #c0c0c0;\r\n  outline: none;\r\n  padding: 0 5px;\r\n}\r\ninput[type=\"submit\"] {\r\n  cursor: pointer;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

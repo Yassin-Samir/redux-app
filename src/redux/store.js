@@ -6,7 +6,7 @@ const inhance = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
  */
 const store = configureStore({
   reducer: {
-    counter: slice,
+    user: slice,
   },
 });
 export default store;

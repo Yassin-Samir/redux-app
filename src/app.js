@@ -1,27 +1,16 @@
 // @ts-nocheck
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "./redux/slice";
+import { add } from "./redux/slice";
 export default function App(props) {
-  const { count } = useSelector((state) => state.counter);
+  const handle = (e) => {
+    dis(add({ name: document.querySelector('input[type="text"]').value }));
+  };
   const dis = useDispatch();
   return (
-    <div className="root1">
-      <button
-        onClick={() => {
-          dis(increment());
-        }}
-      >
-        Increment
-      </button>
-      <p>{count}</p>
-      <button
-        onClick={() => {
-          dis(decrement());
-        }}
-      >
-        Decrement
-      </button>
-    </div>
+    <form onSubmit={(e) => e.preventDefault()}>
+      <input type="text" placeholder="Enter name" onChange={handle} />
+      <input type="submit" value="submit" />
+    </form>
   );
 }
