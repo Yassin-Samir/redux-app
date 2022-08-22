@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+.root {
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  outline: 1px solid gray;
+  border: none;
+}
