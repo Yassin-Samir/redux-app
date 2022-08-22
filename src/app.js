@@ -6,7 +6,7 @@ export default function App(props) {
   const { count } = useSelector((state) => state.counter);
   const dis = useDispatch();
   return (
-    <>
+    <div className="root1">
       <button
         onClick={() => {
           dis(increment());
@@ -22,6 +22,6 @@ export default function App(props) {
       >
         Decrement
       </button>
-    </>
+    </div>
   );
 }
