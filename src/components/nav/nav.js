@@ -3,11 +3,11 @@ import React from "react";
 import "./nav.css";
 import { useSelector } from "react-redux";
 export default function Nav() {
-  const { name } = useSelector((state) => state.user);
+  const { name } = useSelector((s) => s.user.userData);
   return (
     <nav>
       <p>Yassin</p>
-      <p>{name}</p>
+      {name ? <p>{name}</p> : null}
       <p>Nice</p>
     </nav>
   );

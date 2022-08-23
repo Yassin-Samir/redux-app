@@ -1,16 +1,27 @@
 // @ts-nocheck
 import { createSlice } from "@reduxjs/toolkit";
 const slice = createSlice({
-  name: "counter",
+  name: "user",
   initialState: {
-    name: "",
+    userData: { name: "" },
+    loading: null,
+    error: false,
   },
   reducers: {
-    add: (state = { name: "" }, action) => {
-      state.name = action.payload.name;
+    start(state) {
+      state.loading = true;
+    },
+    success(state, action) {
+      state.userData = action.payload;
+      console.log(action);
+      state.loading = false;
+    },
+    error(state) {
+      state.loading = false;
+      state.error = true;
     },
   },
 });
 export { slice };
-export const { add } = slice.actions;
+export const { add, start, success, error } = slice.actions;
 export default slice.reducer;

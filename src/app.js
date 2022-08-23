@@ -2,14 +2,18 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add } from "./redux/slice";
+import adduser from "./redux/api";
 export default function App(props) {
   const handle = (e) => {
-    dis(add({ name: document.querySelector('input[type="text"]').value }));
+    e.preventDefault();
+    adduser(document.querySelector('input[type="text"]').value, dis);
   };
   const dis = useDispatch();
+  const { loading, error } = useSelector((state) => state.user);
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <input type="text" placeholder="Enter name" onChange={handle} />
+    <form onSubmit={handle}>
+      <input type="text" placeholder="Enter name" />
+      {loading ? "Loading" : <input type="submit" value="submit" />}
     </form>
   );
 }
