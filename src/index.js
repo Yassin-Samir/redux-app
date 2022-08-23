@@ -10,13 +10,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 let main = ReactDOM.createRoot(document.querySelector(".root"));
 main.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <Nav />
-        <Routes>
-          <Route path="/" exact element={<App />} />
-        </Routes>
-      </Provider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <Nav />
+      <App />
+    </Provider>
   </React.StrictMode>
 );
