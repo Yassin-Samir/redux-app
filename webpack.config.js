@@ -1,14 +1,13 @@
 let path = require("path");
 let htmlplug = require("html-webpack-plugin");
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: path.resolve(__dirname, "./src/index.js"),
   output: {
     path: path.resolve(__dirname, "docs"),
     filename: "run.js",
     clean: true,
   },
-  devtool: "source-map",
   plugins: [
     new htmlplug({
       title: "react app",

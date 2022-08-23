@@ -10,7 +10,6 @@ export default function App(props) {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <input type="text" placeholder="Enter name" onChange={handle} />
-      <input type="submit" value="submit" />
     </form>
   );
 }
