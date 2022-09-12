@@ -9,11 +9,15 @@ export default function App(props) {
     adduser(document.querySelector('input[type="text"]').value, dis);
   };
   const dis = useDispatch();
-  const { loading, error } = useSelector((state) => state.user);
+  const { loading } = useSelector((state) => state);
   return (
     <form onSubmit={handle}>
       <input type="text" placeholder="Enter name" />
-      {loading ? "Loading" : <input type="submit" value="submit" />}
+      {loading ? (
+        <p style={{ width: "100%", textAlign: "center" }}>Loading</p>
+      ) : (
+        <input type="submit" value="submit" />
+      )}
     </form>
   );
 }
