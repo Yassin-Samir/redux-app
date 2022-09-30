@@ -23,5 +23,5 @@ const slice = createSlice({
   },
 });
 export { slice };
-export const { add, start, success, error } = slice.actions;
+export const { start, success, error } = slice.actions;
 export default slice.reducer;
