@@ -7,6 +7,7 @@ export default function App() {
     const input = document.querySelector('input[type="text"]');
     e.preventDefault();
     dis(start());
+    input.setAttribute("readonly", true);
     setTimeout(() => {
       dis(
         sendData({
@@ -14,6 +15,7 @@ export default function App() {
         })
       );
       input.value = "";
+      input.removeAttribute("readonly");
     }, 3000);
   };
   const dis = useDispatch();
