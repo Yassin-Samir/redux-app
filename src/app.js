@@ -3,8 +3,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { sendData, start } from "./redux/slice";
 export default function App() {
+  const input = document.querySelector('input[type="text"]');
   const handle = (e) => {
-    const input = document.querySelector('input[type="text"]');
     e.preventDefault();
     dis(start());
     input.setAttribute("readonly", true);
