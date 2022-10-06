@@ -3,7 +3,10 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { sendData, start } from "./redux/slice";
 export default function App() {
-  const input = document.querySelector('input[type="text"]');
+  let input;
+  React.useEffect(() => {
+    input = document.querySelector("input[type='text']");
+  }, []);
   const handle = (e) => {
     e.preventDefault();
     dis(start());
