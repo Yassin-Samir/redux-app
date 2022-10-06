@@ -1,12 +1,20 @@
 // @ts-nocheck
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { add } from "./redux/slice";
-import adduser from "./redux/api";
-export default function App(props) {
+import { sendData, start } from "./redux/slice";
+export default function App() {
   const handle = (e) => {
+    const input = document.querySelector('input[type="text"]');
     e.preventDefault();
-    adduser(document.querySelector('input[type="text"]').value, dis);
+    dis(start());
+    setTimeout(() => {
+      dis(
+        sendData({
+          name: input.value,
+        })
+      );
+      input.value = "";
+    }, 3000);
   };
   const dis = useDispatch();
   const { loading } = useSelector((state) => state);

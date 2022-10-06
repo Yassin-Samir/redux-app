@@ -11,17 +11,19 @@ const slice = createSlice({
     start(state) {
       state.loading = true;
     },
-    success(state, action) {
-      state.userData = action.payload;
-      console.log(action);
+    success(state) {
       state.loading = false;
     },
     error(state) {
       state.loading = false;
       state.error = true;
     },
+    sendData(state, action) {
+      state.loading = false;
+      state.userData = action.payload;
+    },
   },
 });
 export { slice };
-export const { start, success, error } = slice.actions;
+export const { start, success, error, sendData } = slice.actions;
 export default slice.reducer;

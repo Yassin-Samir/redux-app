@@ -1,9 +1,8 @@
 // @ts-nocheck
 import React from "react";
-import "./nav.css";
 import { useSelector } from "react-redux";
 export default function Nav() {
-  const { name } = useSelector((s) => s.userData);
+  const { name } = useSelector((state) => state.userData);
   return (
     <nav>
       <p>Yassin</p>
