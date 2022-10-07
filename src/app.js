@@ -25,13 +25,14 @@ export default function App() {
         setNum(4);
       }, 5000);
       const interval = setInterval(() => {
-        if (num) setNum(num--);
+        if (num) setNum((num -= 1));
         else clearInterval(interval);
       }, 1000);
     } else {
       span.current.classList.remove("hidden");
       span.current.classList.add("visible");
-      input.current.classList.add("shake");
+      input.current.classList.remove("shake");
+      setTimeout(() => input.current.classList.add("shake"), 0);
     }
   };
   const dis = useDispatch();
