@@ -29,11 +29,46 @@ form {
 }
 form input {
   width: 100%;
-  margin-top: 5px;
+  margin-top: 3px;
   border: 2px solid #c0c0c0;
   outline: none;
   padding: 0 5px;
 }
 input[type="submit"] {
   cursor: pointer;
+}
+span {
+  color: red;
+  margin-top: 2px;
+  font-size: 0.6rem;
+}
+span.hidden {
+  display: none;
+}
+span.visible {
+  display: inline;
+}
+input.shake {
+  border: 2px solid red;
+  animation: shake 0.2s;
+  -webkit-animation: shake 0.2s;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(-2%);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(2%);
+  }
 }
