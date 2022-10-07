@@ -39,7 +39,7 @@ export default function App() {
   return (
     <form onSubmit={handle}>
       <input type="text" placeholder="Enter name" ref={input} />
-      <span className="span" ref={span}>
+      <span className="span hidden" ref={span}>
         required
       </span>
       {loading ? (
