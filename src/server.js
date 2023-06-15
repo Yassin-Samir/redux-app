@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.json());
 app.post("/api/users", (req, res) => {
   setTimeout(() => {
-    res.send(JSON.stringify({ name: String(Math.random()) }));
+    res.send(JSON.stringify({ name: Math.random() }));
   }, 2000);
 });
 app.listen(3000, () => {
